@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros | Cafetería Web</title>
+  <link rel="stylesheet" href="styles/inicio.css">
+</head>
+
+<body>
+  <!-- Menú de navegación -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="menu.html">Menú</a></li>
+      <li><a href="bebidas.html">Bebidas</a></li>
+      <li><a href="contactenos.html">Contacto</a></li>
+      <li><a href="reposteria.html">Repostería</a></li>
+      <li><a href="cateringCorporativo.html">Catering Corporativo</a></li>
+      <li><a id="perfil" href="perfil.html">Perfil</a></li>
+    </ul>
+  </nav>
+  <!-- Encabezado principal con imagen de fondo -->
+  <header class="main-header">
+    <div class="overlay"></div> <!-- Capa oscura -->
+    <div class="header-content">
+      <h1>Nosotros</h1>
+      <p>Una historia de pasión por lo auténtico</p>
+    </div>
+  </header>
+
+  <!-- Sección Nosotros -->
+  <section id="nosotros">
+    <h2>Cómo Nacimos</h2>
+    <p>En el año 2015, dos amigos de toda la vida, Laura y Andrés, decidieron seguir su pasión por el buen café y la comida casera. Ambos trabajaban en el mundo corporativo, pero sentían que su verdadera vocación estaba en crear algo más personal, algo que conectara con las personas de manera genuina. Así nació Cafetería Web, un pequeño local en una esquina tranquila de la ciudad que rápidamente se convirtió en un lugar de encuentro para quienes buscaban algo más que una simple taza de café.</p>
+
+    <p>La idea fue clara desde el principio: ofrecer un espacio acogedor donde los ingredientes frescos y locales fueran los protagonistas. Sin experiencia previa en gastronomía, Laura y Andrés comenzaron a experimentar con recetas tradicionales, dándoles un toque único y creativo. Desde los primeros días, el aroma del café recién molido y los pasteles caseros hicieron que la cafetería se llenara de clientes curiosos que pronto se convertirían en habituales.</p>
+
+    <p>Lo que comenzó como un sueño pequeño fue creciendo con el tiempo. A medida que la cafetería ganaba popularidad, Laura y Andrés decidieron seguir su visión y expandir su oferta: menús saludables, opciones sin gluten, y bebidas innovadoras que sorprendieran a todos los paladares. En cada paso, su compromiso con los proveedores locales y su amor por la comida auténtica nunca se perdió.</p>
+
+    <p>Hoy en día, Cafetería Web es más que un lugar para disfrutar de un buen café. Es un espacio donde las personas se sienten en casa, donde cada plato tiene una historia detrás, y donde la pasión por lo auténtico sigue siendo el motor de todo lo que hacemos. Estamos orgullosos de haber creado un lugar donde la gente pueda reunirse, compartir y disfrutar de lo mejor de nuestra tierra, en cada bocado y cada sorbo.</p>
+
+    <p>Nosotros no solo ofrecemos comida y café. Ofrecemos una experiencia, un refugio donde las personas puedan relajarse y conectarse con lo que realmente importa: la buena comida, la buena compañía y el respeto por los productos locales.</p>
+  </section>
+
+  <script>
+    window.addEventListener("scroll", function () {
+      var navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) { // Cambia el valor de scroll
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+
+</html>
