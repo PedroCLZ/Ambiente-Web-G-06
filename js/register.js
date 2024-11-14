@@ -1,3 +1,5 @@
+const usuarios = [{ email: "br2323yan12@gmail.com", password: "p123" }];
+
 document.addEventListener("DOMContentLoaded", function () {
   const registerForm = document.getElementById("register-form");
   const registerError = document.getElementById("register-error");
@@ -16,13 +18,24 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>`;
       return;
     } else {
+      const usuario = {
+        email: email,
+        password: password,
+      };
+      usuarios.push(usuario);
+      arrayJsonStorage();
+
       registerError.innerHTML = `<div class="alert alert-success fade show" role="alert">
             <strong>Success:</strong> Email: ${email} successfully registered.
             </div>`;
       setTimeout(function () {
         registerError.innerHTML = "";
-        window.location.href = "2.html";
+        window.location.href = "login.html";
       }, 5000);
     }
   });
 });
+
+function arrayJsonStorage() {
+  localStorage.setItem("credenciales", JSON.stringify(usuarios));
+}
