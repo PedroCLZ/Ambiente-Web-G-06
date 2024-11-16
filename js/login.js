@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (validacion) {
       localStorage.setItem('validado', JSON.stringify(validacion));
-      window.location.href = "producto.html";
+      window.location.href = "inicio.html";
     } else {
       loginError.style.display = "block";
     }
