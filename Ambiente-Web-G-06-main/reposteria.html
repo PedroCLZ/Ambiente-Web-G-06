@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repostería - Cafetería Web</title>
+  <link rel="stylesheet" href="styles/inicio.css">
+</head>
+
+<body>
+  <!-- Menú de navegación -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="menu.html">Menú</a></li>
+      <li><a href="bebidas.html">Bebidas</a></li>
+      <li><a href="contactenos.html">Contacto</a></li>
+      <li><a href="reposteria.html">Repostería</a></li>
+      <li><a href="cateringCorporativo.html">Catering Corporativo</a></li>
+      <li><a id="perfil" href="perfil.html">Perfil</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado principal con imagen de fondo -->
+  <header class="main-header">
+    <div class="overlay"></div> <!-- Capa oscura -->
+    <div class="header-content">
+      <h1>Cafetería Web</h1>
+      <p>Comida Local & Comida Honesta</p>
+    </div>
+  </header>
+
+  <!-- Sección de repostería -->
+  <section id="reposteria">
+    <h2>Repostería Casera</h2>
+    <p>En nuestra cafetería nos enorgullece ofrecerte una variedad de postres frescos y deliciosos, elaborados con ingredientes locales y orgánicos. Cada uno de nuestros productos está diseñado para brindarte una experiencia única de sabor.</p>
+
+    <div class="product-list">
+      <div class="product">
+        <h3>Tarta de Manzana Casera</h3>
+        <p>Una receta clásica, elaborada con manzanas frescas y una masa crujiente, perfecta para cualquier ocasión.</p>
+        <p><strong>Precio: ¢3,500</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Brownie de Chocolate</h3>
+        <p>Suave, húmedo y con un toque de nuez. El brownie ideal para los amantes del chocolate.</p>
+        <p><strong>Precio: ¢2,800</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Galletas de Avena y Pasas</h3>
+        <p>Galletas crujientes, llenas de sabor, con avena y pasas, ideales para acompañar tu café.</p>
+        <p><strong>Precio: ¢1,500</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Cheesecake de Fresas</h3>
+        <p>Un cheesecake suave con fresas frescas por encima, una delicia para los sentidos.</p>
+        <p><strong>Precio: ¢3,000</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Pastel de Zanahoria</h3>
+        <p>Un pastel suave y esponjoso, con zanahorias frescas y especias, cubierto con un glaseado cremoso.</p>
+        <p><strong>Precio: ¢2,500</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Magdalenas de Limón</h3>
+        <p>Deliciosas magdalenas con un toque de limón fresco, perfectas para acompañar un té o café.</p>
+        <p><strong>Precio: ¢1,200</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Tarta de Chocolate y Avellanas</h3>
+        <p>Una combinación perfecta entre el chocolate amargo y las avellanas, creando una tarta deliciosa.</p>
+        <p><strong>Precio: ¢3,200</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Empanadas de Dulce de Leche</h3>
+        <p>Empanadas crujientes rellenas con dulce de leche, ideales para un snack o postre.</p>
+        <p><strong>Precio: ¢1,800</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Bizcocho de Naranja</h3>
+        <p>Un bizcocho esponjoso con el toque cítrico de la naranja, ideal para cualquier momento del día.</p>
+        <p><strong>Precio: ¢2,000</strong></p>
+      </div>
+
+      <div class="product">
+        <h3>Churros Caseros</h3>
+        <p>Churros recién hechos, espolvoreados con azúcar y canela, acompañados con una rica salsa de chocolate.</p>
+        <p><strong>Precio: ¢1,500</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener("scroll", function () {
+      var navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) { // Cambia el valor de scroll
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+
+</html>

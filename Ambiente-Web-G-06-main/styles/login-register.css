@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://img.freepik.com/premium-photo/wooden-background_811396-11892.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+header {
+    height: 50px;
+}
+
+a, p {
+    color: white;
+}
+
+.container {
+    min-height: calc(100vh - 50px);
+}
+
+.card {
+    font-size: 17px;
+    border-radius: 50px;
+    background-color: rgba(53, 36, 20, 0.7);
+    color: white;
+}
+
+.card .form-control {
+    border-radius: 25px;
+    background-color: #965d0833;
+    border-color: #8a8888AA;
+    color: white;
+}
+
+.card .form-control::placeholder {
+    color: white;
+}
+
+.card .form-control:focus {
+    background-color: #ffffff00;
+    border-color: white;
+}
+
+.btn-login {
+    padding: 5px;
+    border-radius: 25px;
+    background-color: #754c25;
+    color: white;
+}

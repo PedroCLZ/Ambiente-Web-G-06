@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catering Corporativo - Cafetería Web</title>
+  <link rel="stylesheet" href="styles/inicio.css">
+</head>
+
+<body>
+  <!-- Menú de navegación -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="menu.html">Menú</a></li>
+      <li><a href="bebidas.html">Bebidas</a></li>
+      <li><a href="contactenos.html">Contacto</a></li>
+      <li><a href="reposteria.html">Repostería</a></li>
+      <li><a href="cateringCorporativo.html">Catering Corporativo</a></li>
+      <li><a id="perfil" href="perfil.html">Perfil</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado principal con imagen de fondo -->
+  <header class="main-header">
+    <div class="overlay"></div> <!-- Capa oscura -->
+    <div class="header-content">
+      <h1>Cafetería Web</h1>
+      <p>Comida Local & Comida Honesta</p>
+    </div>
+  </header>
+
+  <!-- Sección Catering Corporativo -->
+  <section id="catering">
+    <h2>Catering Corporativo</h2>
+    <p>En nuestra cafetería, sabemos lo importante que es mantener a tu equipo bien alimentado y motivado. Por eso, ofrecemos servicios de catering corporativo diseñados para satisfacer las necesidades de empresas de todos los tamaños. Ya sea para una reunión, evento o un almuerzo ejecutivo, nuestros menús están pensados para brindarte opciones deliciosas, saludables y adaptadas a tu presupuesto.</p>
+
+    <h3>Menú Corporativo Personalizado</h3>
+    <p>Ofrecemos menús que se pueden adaptar según las preferencias de tu empresa y las necesidades de los asistentes. Ya sea que necesites opciones vegetarianas, sin gluten, o menús especiales, nos aseguramos de que todos disfruten de una experiencia culinaria excepcional. Algunos de nuestros platos más populares para catering corporativo incluyen:</p>
+
+    <div class="menu-catering">
+      <div class="menu-item">
+        <h4>Sandwiches Gourmet</h4>
+        <p>Variedad de sandwiches con ingredientes frescos y locales, como pollo asado, aguacate, queso fresco y pan artesanal.</p>
+        <p><strong>Precio por persona: ¢2,500</strong></p>
+      </div>
+
+      <div class="menu-item">
+        <h4>Ensaladas Frescas</h4>
+        <p>Combinaciones de vegetales frescos, frutos secos, proteínas y aderezos caseros. Opciones vegetarianas y veganas disponibles.</p>
+        <p><strong>Precio por persona: ¢2,000</strong></p>
+      </div>
+
+      <div class="menu-item">
+        <h4>Platos Calientes</h4>
+        <p>Comida reconfortante como arroz con pollo, lasaña de verduras, filetes de pescado al grill, acompañados de guarniciones variadas.</p>
+        <p><strong>Precio por persona: ¢4,000</strong></p>
+      </div>
+
+      <div class="menu-item">
+        <h4>Wraps y Burritos</h4>
+        <p>Wraps de pollo, carne o vegetales con guacamole, salsa de yogurt y ensalada fresca. Satisfacción garantizada para todos los gustos.</p>
+        <p><strong>Precio por persona: ¢2,800</strong></p>
+      </div>
+
+      <div class="menu-item">
+        <h4>Postres Caseros</h4>
+        <p>Una selección de postres como brownies, tartas, galletas y cheesecake, para cerrar tu evento con un toque dulce.</p>
+        <p><strong>Precio por persona: ¢1,500</strong></p>
+      </div>
+
+      <div class="menu-item">
+        <h4>Bebidas y Jugos Naturales</h4>
+        <p>Ofrecemos una variedad de jugos naturales, agua infusionada, café y té para acompañar tu menú corporativo.</p>
+        <p><strong>Precio por persona: ¢1,000</strong></p>
+      </div>
+    </div>
+
+    <h3>Paquetes Especiales</h3>
+    <p>Además de los menús a la carta, ofrecemos paquetes especiales que incluyen una combinación de diferentes opciones para satisfacer a todos los asistentes de tu evento. Estos paquetes pueden incluir una selección de sandwiches, ensaladas, platos calientes, postres y bebidas. Los paquetes se pueden personalizar según el número de personas y las preferencias dietéticas.</p>
+
+    <div class="package">
+      <h4>Paquete Básico</h4>
+      <p>Incluye sandwiches gourmet, ensalada fresca y bebidas. Ideal para reuniones o eventos informales.</p>
+      <p><strong>Precio por persona: ¢4,500</strong></p>
+    </div>
+
+    <div class="package">
+      <h4>Paquete Ejecutivo</h4>
+      <p>Incluye platos calientes, ensaladas, postres y bebidas. Perfecto para almuerzos corporativos o eventos de más alto nivel.</p>
+      <p><strong>Precio por persona: ¢6,500</strong></p>
+    </div>
+
+    <div class="package">
+      <h4>Paquete Premium</h4>
+      <p>Incluye todos los platos, postres y bebidas de los paquetes anteriores, además de opciones gourmet como sushi, carnes frías y tapas.</p>
+      <p><strong>Precio por persona: ¢8,000</strong></p>
+    </div>
+
+    <h3>¿Por qué elegirnos?</h3>
+    <p>El catering corporativo de nuestra cafetería es más que solo comida: es una experiencia culinaria que potencia la productividad y el bienestar de tus empleados. Nos aseguramos de que cada plato esté elaborado con los mejores ingredientes, frescos y locales, para ofrecerte una comida deliciosa y saludable que fomente un ambiente positivo en tu empresa.</p>
+
+    <p>Además, nuestro equipo de atención al cliente se encargará de todos los detalles, para que tú solo tengas que disfrutar de la comida. Nos adaptamos a tus horarios y necesidades para garantizar que tu evento sea un éxito.</p>
+  </section>
+
+  <script>
+    window.addEventListener("scroll", function () {
+      var navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) { // Cambia el valor de scroll
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+
+</html>

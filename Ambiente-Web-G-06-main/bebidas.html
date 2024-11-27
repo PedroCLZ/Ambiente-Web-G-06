@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bebidas - Cafetería Web</title>
+  <link rel="stylesheet" href="styles/inicio.css">
+</head>
+
+<body>
+  <!-- Menú de navegación -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li><a href="inicio.html">Inicio</a></li>
+      <li><a href="menu.html">Menú</a></li>
+      <li><a href="bebidas.html">Bebidas</a></li>
+      <li><a href="contactenos.html">Contacto</a></li>
+      <li><a href="reposteria.html">Repostería</a></li>
+      <li><a href="cateringCorporativo.html">Catering Corporativo</a></li>
+      <li><a id="perfil" href="perfil.html">Perfil</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado principal con imagen de fondo -->
+  <header class="main-header">
+    <div class="overlay"></div> <!-- Capa oscura -->
+    <div class="header-content">
+      <h1>Cafetería Web</h1>
+      <p>Comida Local & Comida Honesta</p>
+    </div>
+  </header>
+
+  <!-- Secciones de contenido -->
+  <section id="bebidas">
+    <h2>Bebidas</h2>
+    
+    <!-- Sección de Jugos Naturales -->
+    <div class="menu-category" id="jugos-naturales">
+      <h3>Jugos Naturales</h3>
+      <ul class="menu-items">
+        <li>
+          <h4>Jugo de Naranja Natural</h4>
+          <p>Exprimido al momento con naranjas frescas y jugosas. 100% natural.</p>
+          <span class="price">₡1,500</span>
+        </li>
+        <li>
+          <h4>Jugo de Piña con Menta</h4>
+          <p>Fresco jugo de piña combinado con un toque de menta para refrescarte.</p>
+          <span class="price">₡1,800</span>
+        </li>
+        <li>
+          <h4>Jugo Verde Detox</h4>
+          <p>Combinación de pepino, manzana, espinaca y jengibre, ideal para desintoxicar tu cuerpo.</p>
+          <span class="price">₡2,000</span>
+        </li>
+        <li>
+          <h4>Jugo de Fresa y Limón</h4>
+          <p>Fresas frescas con un toque de limón, creando una mezcla deliciosa y refrescante.</p>
+          <span class="price">₡1,700</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sección de Café y Té -->
+    <div class="menu-category" id="cafe-te">
+      <h3>Café y Té</h3>
+      <ul class="menu-items">
+        <li>
+          <h4>Café Americano</h4>
+          <p>Café 100% orgánico, servido negro o con leche según tu preferencia.</p>
+          <span class="price">₡1,800</span>
+        </li>
+        <li>
+          <h4>Café Latte</h4>
+          <p>Café espresso combinado con leche espumosa. Perfecto para los amantes del café suave.</p>
+          <span class="price">₡2,200</span>
+        </li>
+        <li>
+          <h4>Capuccino</h4>
+          <p>Una mezcla perfecta de espresso, leche vaporizada y espuma cremosa.</p>
+          <span class="price">₡2,400</span>
+        </li>
+        <li>
+          <h4>Té Verde</h4>
+          <p>Un té verde fresco y revitalizante, ideal para relajarte en cualquier momento del día.</p>
+          <span class="price">₡1,500</span>
+        </li>
+        <li>
+          <h4>Té de Hierbaluisa</h4>
+          <p>Infusión natural de hierbaluisa, perfecta para la digestión y relajación.</p>
+          <span class="price">₡1,400</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Sección de Bebidas Especiales -->
+    <div class="menu-category" id="bebidas-especiales">
+      <h3>Bebidas Especiales</h3>
+      <ul class="menu-items">
+        <li>
+          <h4>Batido de Mango y Coco</h4>
+          <p>Un batido cremoso con mango fresco y leche de coco. Ideal para un día caluroso.</p>
+          <span class="price">₡2,500</span>
+        </li>
+        <li>
+          <h4>Frapuccino de Chocolate</h4>
+          <p>Frapuccino frío con sabor a chocolate, cubierto con crema batida y chispas de chocolate.</p>
+          <span class="price">₡2,700</span>
+        </li>
+        <li>
+          <h4>Batido Energético de Acelga</h4>
+          <p>Un batido saludable con acelga, pepino y limón, perfecto para recargar energías.</p>
+          <span class="price">₡2,200</span>
+        </li>
+        <li>
+          <h4>Limonada de Jengibre</h4>
+          <p>Limonada fresca con un toque de jengibre, para un sabor refrescante y picante.</p>
+          <span class="price">₡1,800</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener("scroll", function () {
+      var navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) { // Cambia el valor de scroll
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+
+</html>
