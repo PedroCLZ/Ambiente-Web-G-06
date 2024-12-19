@@ -5,10 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto - Cafetería Web</title>
+  
   <link rel="stylesheet" href="styles/inicio.css">
 </head>
 
 <body>
+  <style>
+    /* Estilos generales del formulario */
+    .contact-form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Campos de formulario */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+  
+    /* Botón de envío */
+    button[type="submit"] {
+      padding: 12px 25px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+  
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
+  
   <!-- Menú de navegación -->
   <nav class="navbar">
     <ul class="nav-list">
@@ -18,7 +58,9 @@
       <li><a href="contactenos.html">Contacto</a></li>
       <li><a href="reposteria.html">Repostería</a></li>
       <li><a href="cateringCorporativo.html">Catering Corporativo</a></li>
+      <li><a id="carrito" href="carrito.html">Carrito</a></li>
       <li><a id="perfil" href="perfil.html">Perfil</a></li>
+      <li><a class="nav-link" href="backend/logout.php">Logout</a></li>
     </ul>
   </nav>
 
@@ -36,29 +78,34 @@
     <h2>Contáctanos</h2>
 
     <!-- Formulario de contacto -->
-    <div class="contact-form input-group mb-3">
-      <h3>Envíanos un mensaje</h3>
-      <form action="#" method="post" class="row mt-4">
-        <div class="col-5 mb-4">
-          <label  for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Tu nombre">
-        </div>
-        
-        <div class="col-5">
-          <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" name="email" class="form-control" required placeholder="Tu correo electrónico">
-        </div>
-        
-        <div class="col-8 mb-4">
-          <label for="mensaje" class="mr-2">Mensaje:</label>
-          <textarea id="mensaje" name="mensaje" rows="4" class="form-control" required placeholder="Escribe tu mensaje aquí"></textarea>
-        </div>
-        <div class="col-12 mb-4">
-          <button type="submit" class="btn btn-primary ">Enviar mensaje</button>
-        </div>
-        
-      </form>
+    <div class="contact-form input-group mb-3 container py-5">
+  <h3 class="text-center mb-4">Envíanos un mensaje</h3>
+  <form action="#" method="post" class="row g-4">
+    <!-- Nombre -->
+    <div class="col-lg-6">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Tu nombre">
     </div>
+    
+    <!-- Correo electrónico -->
+    <div class="col-lg-6">
+      <label for="email" class="form-label">Correo electrónico:</label>
+      <input type="email" id="email" name="email" class="form-control" required placeholder="Tu correo electrónico">
+    </div>
+    
+    <!-- Mensaje -->
+    <div class="col-12">
+      <label for="mensaje" class="form-label">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="4" class="form-control" required placeholder="Escribe tu mensaje aquí"></textarea>
+    </div>
+
+    <!-- Botón de envío -->
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary w-100">Enviar mensaje</button>
+    </div>
+  </form>
+</div>
+
 
     <!-- Información de contacto -->
     <div class="contact-info mb-4">

@@ -51,7 +51,7 @@ body {
   background-image: url('https://img.freepik.com/premium-photo/wooden-background_811396-11892.jpg'); /* Imagen de fondo */
   background-size: cover;
   background-position: center;
-  height: 80vh; /* Ajusta la altura del encabezado */
+  height: 50vh; /* Ajusta la altura del encabezado */
   display: flex;
   align-items: center;
   justify-content: center;
