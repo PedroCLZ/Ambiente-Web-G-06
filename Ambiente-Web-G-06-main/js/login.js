@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (response.ok) {
         // Comprobar si es el usuario administrador específico
-        if (email === 'juanito2@gmail.com' && password === '123456') {
+        if (email === 'admin@example.com' && password === '123456') {
           window.location.href = "inicio_admin.html"; // Redirigir al dashboard de administrador
         } else {
           window.location.href = "inicio.html"; // Redirigir a la página estándar

@@ -1,135 +1,168 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     let isEditMode = false;
     let edittingId;
-    const tasks = [{
-        id: 1,
-        name: "Starbucks",
-        direction: "Costa Rica",
-        contact: "45610324",
-        email: "starbucks@example.com"
-    },
-    {
-        id: 2,
-        name: "Musmani",
-        direction: "Costa Rica",
-        contact: "76542198",
-        email: "musmani@example.com"
-    },
-    {
-        id: 3,
-        name: "Dos Pinos",
-        direction: "Costa Rica",
-        contact: "7513547",
-        email: "dospinos@example.com"
-    }];
+    let proveedores = [];
+    const API_URL = 'backend/AdmProveedores.php';
 
-    function loadTasks() {
-        const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
-        tasks.forEach(function (task) {
-            const taskCard = document.createElement('div');
-            taskCard.className = 'col-md-4 mb-3';
-            taskCard.innerHTML = `
+    async function CargarProveedores() {
+        //va al servidor por los proveedores
+        try {
+            const response = await fetch(API_URL, {
+                method: 'GET',
+                credentials: 'include'
+            });
+            if (response.ok) {
+                proveedores = await response.json();
+                renderProveedores(proveedores);
+            } else {
+                /*if (response.status == 401) {
+                    window.location.href = 'AdmEmpleados.html';//REVISAR EL HTML EN CASO DE FALLO
+                }
+                console.error("Error al obtener empleados");*/
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error("Error al obtener los proveedores: ", errorData.error || "Error desconocido");
+                    return;
+                }
+
+            }
+
+        } catch (err) {
+            console.error(err);
+        }
+
+        function renderProveedores(proveedores) {
+            //traer los proveedores desde el backend
+
+            const provtList = document.getElementById('task-list');
+            provtList.innerHTML = '';
+            proveedores.forEach(function (proveedor) {
+
+                const provCard = document.createElement('div');
+                provCard.className = 'col-md-4 mb-3';
+                provCard.innerHTML = `
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">${task.name}</h5>
-                        <p class="card-text">Direccion: ${task.direction}</p>
-                        <p class="card-text">Email: ${task.email}</p>
-                        <p class="card-text">Contacto: ${task.contact}</p>
+                        <h5 class="card-title">${proveedor.nombreProveedor}</h5>
+                        <p class="card-text">Direccion: ${proveedor.direccion}</p>
+                        <p class="card-text">Email: ${proveedor.email}</p>
+                         <p class="card-text">Contacto: ${proveedor.contacto}</p>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <button class="btn btn-secondary btn-sm edit-task" data-id="${task.id}">Edit</button>
-                        <button class="btn btn-danger btn-sm delete-task" data-id="${task.id}">Delete</button>
+                        <button class="btn btn-secondary btn-sm edit-task" data-id="${proveedor.idProveedor}">Edit</button>
+                        <button class="btn btn-danger btn-sm delete-task" data-id="${proveedor.idProveedor}">Delete</button>
                     </div>
                 </div>
             `;
-            taskList.appendChild(taskCard);
-        });
-    
+                provtList.appendChild(provCard);
+            });
+        }
+
         // Asigna eventos a los botones después de cargar las tareas
         document.querySelectorAll('.edit-task').forEach(function (button) {
-            button.addEventListener('click', handleEditTask);
+            button.addEventListener('click', handleEditProv);
         });
-    
+
         document.querySelectorAll('.delete-task').forEach(function (button) {
-            button.addEventListener('click', handleDeleteTask);
+            button.addEventListener('click', handleDeleteProv);
         });
     }
-    
 
-    document.querySelectorAll('.delete-task').forEach(function (button) {
-        button.addEventListener('click', handleDeleteTask);
-    });
-
-    // Función para editar tarea
-    function handleEditTask(event) {
+    // Función para editar proveedor
+    function handleEditProv(event) {
         try {
-            // alert(event.target.dataset.id);
             //localizar la tarea quieren editar
-            const taskId = parseInt(event.target.dataset.id);
-            const task = tasks.find(t => t.id === taskId);
+            const proveedorId = parseInt(event.target.dataset.idProveedor);
+            const proveedor = proveedores.find(t => t.idProveedor === proveedorId);
             //cargar los datos en el formulario 
-            document.getElementById('task-name').value = task.name;
-            document.getElementById('task-direc').value = task.direction;
-            document.getElementById('task-contact').value = task.contact;
-            document.getElementById('task-email').value = task.email;
+            document.getElementById('task-name').value = proveedor.nombreProveedor;
+            document.getElementById('task-direc"').value = proveedor.direccion;
+            document.getElementById('task-email').value = proveedor.email;
+            document.getElementById('task-contact').value = proveedor.contacto;
 
             //ponerlo en modo edicion
             isEditMode = true;
-            edittingId = taskId;
+            edittingId = proveedorId;
             //mostrar el modal
             const modal = new bootstrap.Modal(document.getElementById("taskModal"));
             modal.show();
 
 
         } catch (error) {
-            alert("Error trying to edit a task");
+            alert("Error trying to edit a prov");
             console.error(error);
         }
     }
 
     // Función para eliminar tarea
-    function handleDeleteTask(event) {
-        const id = parseInt(event.target.dataset.id);
-        const index = tasks.findIndex(t => t.id === id);
-        tasks.splice(index, 1);
-        loadTasks();
+
+    async function handleDeleteProv(event) {
+        const idProveedor = parseInt(event.target.dataset.id);
+        const response = await fetch(`${API_URL}?idProveedor=${idProveedor}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        });
+        if (response.ok) {
+            CargarProveedores();
+
+        } else {
+            console.error("Error eliminando proveedor");
+            console.log(`${API_URL}?idProveedor=${idProveedor}`);
+        }
     }
 
     // Evento para agregar una nueva tarea
-    document.getElementById('task-form').addEventListener('submit', function (e) {
+    document.getElementById('task-form').addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        const name = document.getElementById("task-name").value;
-        const direction = document.getElementById("task-direc").value;
-        const contact = document.getElementById("task-contact").value;
+        const nombreProveedor = document.getElementById("task-name").value;
+        const direccion = document.getElementById("task-direc").value;
         const email = document.getElementById("task-email").value;
+        const contacto = document.getElementById("task-contact").value;
 
         if (isEditMode) {
-            //todo editar
-            const task = tasks.find(t => t.id === edittingId);
-            task.name = name;
-            task.direction = direction;
-            task.contact = contact;
-            task.email = email;
+            //editar
+            const response = await fetch(`${API_URL}?idProveedor=${edittingId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nombreProveedor: nombreProveedor, direccion: direccion, email: email, contacto: contacto }),
+                credentials: "include"
+            });
+            if (!response.ok) {
+                console.error("Sucedio un error");
+            }
 
         } else {
-            const newTask = {
-                id: tasks.length + 1,
-                name: name,
-                direction: direction,
-                contact: contact,
+            const newProv = {
+                nombreProveedor: nombreProveedor,
+                direccion: direccion,
                 email: email,
+                contacto: contacto
             };
-            tasks.push(newTask);
+            //enviar el proveedor al backend
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newProv),
+                credentials: "include"
+            });
+            if (!response.ok) {
+                console.error("Sucedio un error");
+            }
         }
         const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
         modal.hide();
-        loadTasks();
+        CargarProveedores();
     });
 
-    document.getElementById('taskModal').addEventListener('show.bs.modal',function(){
-        if(!isEditMode){
+    document.getElementById('taskModal').addEventListener('show.bs.modal', function () {
+        if (!isEditMode) {
             document.getElementById('task-form').reset();
             // document.getElementById('task-title').value = "";
             // document.getElementById('task-desc').value = "";
@@ -137,10 +170,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.getElementById("taskModal").addEventListener('hidden.bs.modal', function(){
+    document.getElementById("taskModal").addEventListener('hidden.bs.modal', function () {
         edittingId = null;
         isEditMode = false;
     })
-    loadTasks();
+    CargarProveedores();
 
 });
+

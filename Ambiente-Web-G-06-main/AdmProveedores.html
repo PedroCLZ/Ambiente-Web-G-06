@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles/cruds.css">
 </head>
+
 <body>
-    <navbar class="navbar navbar-expand-lg bg-body-tertiary">
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="dashboard.html">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false">Administracion</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="AdmProductos.html">Administrar Productos</a></li>
-                    <li><a class="dropdown-item" href="AdmProveedores.html">Administrar Proveedores</a></li>
-                    <li><a class="dropdown-item" href="AdmEmpleados.html">Administrar Empleados</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Reportes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Existencias</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Clientes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pedidos</a>
-            </li>
+    <!-- Menú de navegación -->
+    <nav class="navbar-crud">
+        <ul class="nav-list-crud">
+            <li><a href="inicio_admin.html">Inicio</a></li>
+            <li><a href="AdmEmpleados.html">Administracion de empleados</a></li>
+            <li><a href="AdmProductos.html">Administracion de productos</a></li>
+            <li><a href="AdmProveedores.html">Administracion de proveedores</a></li>
+            <li><a class="nav-link" href="backend/logout.php">Logout</a></li>
         </ul>
-    </navbar>
+    </nav>
+
+    <!-- Encabezado principal con imagen de fondo -->
+    <header class="main-header-crud">
+        <div class="overlay-crud"></div>
+        <div class="header-content-crud">
+            <h1>Cafeteria Web</h1>
+            <p>Comida Local & Comida Honesta</p>
+        </div>
+    </header>
+
+
+    <!-- Secciones de contenido -->
+
     <div class="container my-4">
-        <h1 class="text-center mb-4" >Proveedores</h1>
-        <div class="d-flex justify-content-center mb-4" >
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">Agregar un nuevo proveedor</button>
+        <div class="d-flex justify-content-center mb-4">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">Agregar un nuevo
+                proveedor</button>
         </div>
         <div class="row" id="task-list">
             <!-- Mostrar aqui los cards de las tareas -->
         </div>
     </div>
 
-    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true" >
+    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -58,21 +55,21 @@
                         <input type="hidden" id="task-id">
                         <div class="mb-3">
                             <label for="task-name" class="form-label">Nombre del proveedor</label>
-                            <input type="text" class="form-control" id="task-name" required> 
+                            <input type="text" class="form-control" id="task-name" required>
                         </div>
-                        <div class="mb-3">   
+                        <div class="mb-3">
                             <label for="task-direc" class="form-label">Dirección del proveedor</label>
-                            <textarea class="form-control" id="task-direc" rows="3" required></textarea>                         
+                            <textarea class="form-control" id="task-direc" rows="3" required></textarea>
                         </div>
 
-                        <div class="mb-3">      
-                            <label for="task-contact" class="form-label">Numero de telefono</label>
-                            <input type="number" class="form-control" id="task-contact" required>                      
-                        </div>
-                        
                         <div class="mb-3">
                             <label for="task-email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="task-email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="task-contact" class="form-label">Numero de telefono</label>
+                            <input type="number" class="form-control" id="task-contact" required>
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -91,4 +88,5 @@
     <script src="js/AdmProveedores.js"></script>
 
 </body>
+
 </html>
