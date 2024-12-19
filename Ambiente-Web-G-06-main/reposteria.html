@@ -6,6 +6,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Repostería - Cafetería Web</title>
   <link rel="stylesheet" href="styles/inicio.css">
+  <style>
+    /* Estilo del menú */
+    .menu-category {
+      margin-bottom: 30px;
+    }
+
+    .menu-items {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      background-color: #f8f8f8;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-item h4 {
+      margin: 0;
+    }
+
+    .menu-item p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+
+    .add-to-cart {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity {
+      width: 50px;
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .add-to-cart button {
+      padding: 8px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add-to-cart button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 
 <body>
@@ -18,97 +82,137 @@
       <li><a href="contactenos.html">Contacto</a></li>
       <li><a href="reposteria.html">Repostería</a></li>
       <li><a href="cateringCorporativo.html">Catering Corporativo</a></li>
+      <li><a id="carrito" href="carrito.html">Carrito</a></li>
       <li><a id="perfil" href="perfil.html">Perfil</a></li>
     </ul>
   </nav>
 
-  <!-- Encabezado principal con imagen de fondo -->
   <header class="main-header">
-    <div class="overlay"></div> <!-- Capa oscura -->
+    <div class="overlay"></div> 
     <div class="header-content">
-      <h1>Cafetería Web</h1>
-      <p>Comida Local & Comida Honesta</p>
+      <h1>Repostería</h1>
+      <p>Deliciosos postres hechos con amor.</p>
     </div>
   </header>
 
-  <!-- Sección de repostería -->
-  <section id="reposteria">
-    <h2>Repostería Casera</h2>
-    <p>En nuestra cafetería nos enorgullece ofrecerte una variedad de postres frescos y deliciosos, elaborados con ingredientes locales y orgánicos. Cada uno de nuestros productos está diseñado para brindarte una experiencia única de sabor.</p>
+  <!-- Secciones de contenido -->
+  <section id="menu">
+    <h2>Menú de Repostería</h2>
 
-    <div class="product-list">
-      <div class="product">
-        <h3>Tarta de Manzana Casera</h3>
-        <p>Una receta clásica, elaborada con manzanas frescas y una masa crujiente, perfecta para cualquier ocasión.</p>
-        <p><strong>Precio: ¢3,500</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Brownie de Chocolate</h3>
-        <p>Suave, húmedo y con un toque de nuez. El brownie ideal para los amantes del chocolate.</p>
-        <p><strong>Precio: ¢2,800</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Galletas de Avena y Pasas</h3>
-        <p>Galletas crujientes, llenas de sabor, con avena y pasas, ideales para acompañar tu café.</p>
-        <p><strong>Precio: ¢1,500</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Cheesecake de Fresas</h3>
-        <p>Un cheesecake suave con fresas frescas por encima, una delicia para los sentidos.</p>
-        <p><strong>Precio: ¢3,000</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Pastel de Zanahoria</h3>
-        <p>Un pastel suave y esponjoso, con zanahorias frescas y especias, cubierto con un glaseado cremoso.</p>
-        <p><strong>Precio: ¢2,500</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Magdalenas de Limón</h3>
-        <p>Deliciosas magdalenas con un toque de limón fresco, perfectas para acompañar un té o café.</p>
-        <p><strong>Precio: ¢1,200</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Tarta de Chocolate y Avellanas</h3>
-        <p>Una combinación perfecta entre el chocolate amargo y las avellanas, creando una tarta deliciosa.</p>
-        <p><strong>Precio: ¢3,200</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Empanadas de Dulce de Leche</h3>
-        <p>Empanadas crujientes rellenas con dulce de leche, ideales para un snack o postre.</p>
-        <p><strong>Precio: ¢1,800</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Bizcocho de Naranja</h3>
-        <p>Un bizcocho esponjoso con el toque cítrico de la naranja, ideal para cualquier momento del día.</p>
-        <p><strong>Precio: ¢2,000</strong></p>
-      </div>
-
-      <div class="product">
-        <h3>Churros Caseros</h3>
-        <p>Churros recién hechos, espolvoreados con azúcar y canela, acompañados con una rica salsa de chocolate.</p>
-        <p><strong>Precio: ¢1,500</strong></p>
-      </div>
+    <!-- Sección de Repostería -->
+    <div class="menu-category" id="reposteria">
+      <h3>Repostería</h3>
+      <ul class="menu-items">
+        <li class="menu-item">
+          <div>
+            <h4>Pastel de Chocolate</h4>
+            <p>Delicioso pastel de chocolate con cobertura suave de ganache.</p>
+            <span class="price">₡2,800</span>
+          </div>
+          <div class="add-to-cart">
+            <input type="number" class="quantity" value="1" min="1" id="quantity8">
+            <button onclick="agregarAlCarrito('Pastel de Chocolate', 2800, document.getElementById('quantity8').value)">Agregar al Carrito</button>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div>
+            <h4>Galletas de Avena</h4>
+            <p>Galletas crujientes de avena con un toque de canela.</p>
+            <span class="price">₡1,500</span>
+          </div>
+          <div class="add-to-cart">
+            <input type="number" class="quantity" value="1" min="1" id="quantity9">
+            <button onclick="agregarAlCarrito('Galletas de Avena', 1500, document.getElementById('quantity9').value)">Agregar al Carrito</button>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div>
+            <h4>Brownie con Nueces</h4>
+            <p>Brownie de chocolate con nueces, ideal para los amantes del dulce.</p>
+            <span class="price">₡2,000</span>
+          </div>
+          <div class="add-to-cart">
+            <input type="number" class="quantity" value="1" min="1" id="quantity10">
+            <button onclick="agregarAlCarrito('Brownie con Nueces', 2000, document.getElementById('quantity10').value)">Agregar al Carrito</button>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div>
+            <h4>Tarta de Frutas</h4>
+            <p>Deliciosa tarta con frutas frescas y una base de crema pastelera.</p>
+            <span class="price">₡2,500</span>
+          </div>
+          <div class="add-to-cart">
+            <input type="number" class="quantity" value="1" min="1" id="quantity11">
+            <button onclick="agregarAlCarrito('Tarta de Frutas', 2500, document.getElementById('quantity11').value)">Agregar al Carrito</button>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div>
+            <h4>Donas Glaseadas</h4>
+            <p>Donas frescas con un delicioso glaseado de azúcar.</p>
+            <span class="price">₡1,700</span>
+          </div>
+          <div class="add-to-cart">
+            <input type="number" class="quantity" value="1" min="1" id="quantity12">
+            <button onclick="agregarAlCarrito('Donas Glaseadas', 1700, document.getElementById('quantity12').value)">Agregar al Carrito</button>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div>
+            <h4>Churros con Chocolate</h4>
+            <p>Churros recién horneados acompañados de un delicioso chocolate caliente.</p>
+            <span class="price">₡2,200</span>
+          </div>
+          <div class="add-to-cart">
+            <input type="number" class="quantity" value="1" min="1" id="quantity13">
+            <button onclick="agregarAlCarrito('Churros con Chocolate', 2200, document.getElementById('quantity13').value)">Agregar al Carrito</button>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div>
+            <h4>Pastel de Limón</h4>
+            <p>Un pastel suave y refrescante de limón, ideal para los días calurosos.</p>
+            <span class="price">₡2,400</span>
+          </div>
+          <div class="add-to-cart">
+            <input type="number" class="quantity" value="1" min="1" id="quantity14">
+            <button onclick="agregarAlCarrito('Pastel de Limón', 2400, document.getElementById('quantity14').value)">Agregar al Carrito</button>
+          </div>
+        </li>
+      </ul>
     </div>
+
   </section>
 
   <script>
-    window.addEventListener("scroll", function () {
-      var navbar = document.querySelector(".navbar");
-      if (window.scrollY > 50) { // Cambia el valor de scroll
-        navbar.classList.add("scrolled");
+    // Función para agregar productos al carrito
+    function agregarAlCarrito(nombre, precio, cantidad) {
+      // Obtener el carrito del localStorage o crear uno vacío
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      // Verificar si el producto ya está en el carrito
+      const productoExistente = carrito.find(item => item.nombre === nombre);
+
+      if (productoExistente) {
+        // Si el producto ya existe, actualizar la cantidad
+        productoExistente.cantidad += parseInt(cantidad);
       } else {
-        navbar.classList.remove("scrolled");
+        // Si no existe, agregar un nuevo producto
+        carrito.push({
+          nombre: nombre,
+          precio: precio,
+          cantidad: parseInt(cantidad)
+        });
       }
-    });
+
+      // Guardar el carrito actualizado en el localStorage
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+
+      alert(`${nombre} agregado al carrito`);
+    }
   </script>
+
 </body>
 
 </html>

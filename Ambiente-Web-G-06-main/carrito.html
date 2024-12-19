@@ -2,64 +2,174 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="styles/carrito.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito - Cafetería Web</title>
+  <link rel="stylesheet" href="styles/inicio.css">
+  <style>
+    /* Estilo para el carrito */
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      background-color: #f8f8f8;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item h4 {
+      margin: 0;
+    }
+
+    .cart-item p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .cart-item .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+
+    .cart-item .quantity {
+      width: 50px;
+      text-align: center;
+      margin: 0 10px;
+    }
+
+    .cart-item button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .cart-item button:hover {
+      background-color: #e53935;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .clear-cart {
+      display: block;
+      margin: 20px 0;
+      text-align: center;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .clear-cart:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 
 <body>
-
-    <!-- Menú de navegación -->
     <nav class="navbar">
         <ul class="nav-list">
-            <li><a href="inicio.html">Inicio</a></li>
-            <li><a href="menu.html">Menú</a></li>
-            <li><a href="bebidas.html">Bebidas</a></li>
-            <li><a href="contactenos.html">Contacto</a></li>
-            <li><a href="reposteria.html">Repostería</a></li>
-            <li><a href="cateringCorporativo.html">Catering Corporativo</a></li>
-            <li><a id="perfil" href="perfil.html">Perfil</a></li>
-            <li><a href="carrito.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+          <li><a href="inicio.html">Inicio</a></li>
+          <li><a href="menu.html">Menú</a></li>
+          <li><a href="bebidas.html">Bebidas</a></li>
+          <li><a href="contactenos.html">Contacto</a></li>
+          <li><a href="reposteria.html">Repostería</a></li>
+          <li><a href="cateringCorporativo.html">Catering Corporativo</a></li>
+          <li><a id="carrito" href="carrito.html">Carrito</a></li>
+          <li><a id="perfil" href="perfil.html">Perfil</a></li>
         </ul>
-    </nav>
+      </nav>
+    
 
-    <div class="container">
-        <h1>Carrito de Compras</h1>
-
-        <!-- Lista de Productos -->
-        <div id="products">
-            <div class="product">
-                <span>Producto 1</span>
-                <span>$10</span>
-                <button class="btn" onclick="addToCart('Producto 1', 10)">Agregar</button>
-            </div>
-            <div class="product">
-                <span>Producto 2</span>
-                <span>$20</span>
-                <button class="btn" onclick="addToCart('Producto 2', 20)">Agregar</button>
-            </div>
-            <div class="product">
-                <span>Producto 3</span>
-                <span>$30</span>
-                <button class="btn" onclick="addToCart('Producto 3', 30)">Agregar</button>
-            </div>
-        </div>
-
-        <!-- Carrito -->
-        <div id="cart" class="cart">
-            <h2>Tu Carrito</h2>
-            <div id="cart-items"></div>
-            <div class="total" id="total">Total: $0</div>
-        </div>
+  <header class="main-header">
+    <div class="overlay"></div>
+    <div class="header-content">
+      <h1>Carrito</h1>
+      <p>Tu carrito de compras</p>
     </div>
-    <div class="button">
-        <a href="menu.html"><button type="button" class="btn btn-warning">Continuar comprando</button></a>
-        <button  type="button" class="btn btn-success">Finalizar compra</button>
+  </header>
+
+  <section id="carrito">
+    <h2>Carrito de Compras</h2>
+
+    <!-- Aquí se listarán los productos agregados al carrito -->
+    <div id="carrito-contenido">
+      <!-- Los productos serán agregados dinámicamente -->
     </div>
-    <script src="js/carrito.js"></script>
+
+    <div class="total">
+      <p>Total: ₡<span id="total">0</span></p>
+    </div>
+
+    <a href="menu.html" class="clear-cart">Volver al Menú</a>
+  </section>
+
+  <script>
+    // Función para cargar los productos del carrito desde el localStorage
+    function cargarCarrito() {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let carritoContenido = document.getElementById('carrito-contenido');
+      let total = 0;
+
+      carritoContenido.innerHTML = ''; // Limpiar carrito
+
+      // Mostrar los productos en el carrito
+      carrito.forEach((producto, index) => {
+        let productoDiv = document.createElement('div');
+        productoDiv.classList.add('cart-item');
+
+        let productoHTML = `
+          <div>
+            <h4>${producto.nombre}</h4>
+            <p>₡${producto.precio}</p>
+          </div>
+          <div>
+            <input type="number" class="quantity" value="${producto.cantidad}" min="1" data-index="${index}" onchange="actualizarCantidad(${index})">
+            <span class="price">₡${producto.precio * producto.cantidad}</span>
+            <button onclick="eliminarProducto(${index})">Eliminar</button>
+          </div>
+        `;
+        productoDiv.innerHTML = productoHTML;
+        carritoContenido.appendChild(productoDiv);
+
+        // Calcular el total
+        total += producto.precio * producto.cantidad;
+      });
+
+      // Mostrar el total en la página
+      document.getElementById('total').textContent = total;
+    }
+
+    // Función para actualizar la cantidad de un producto
+    function actualizarCantidad(index) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let cantidad = document.querySelectorAll('.quantity')[index].value;
+      carrito[index].cantidad = parseInt(cantidad);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      cargarCarrito(); // Recargar el carrito con la nueva cantidad
+    }
+
+    // Función para eliminar un producto del carrito
+    function eliminarProducto(index) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.splice(index, 1); // Eliminar producto del carrito
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      cargarCarrito(); // Recargar el carrito después de eliminar
+    }
+
+    // Cargar el carrito cuando se cargue la página
+    window.onload = cargarCarrito;
+  </script>
+
 </body>
 
 </html>
