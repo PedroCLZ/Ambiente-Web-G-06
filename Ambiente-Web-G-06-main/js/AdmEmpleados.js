@@ -1,152 +1,176 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     let isEditMode = false;
     let edittingId;
-    const tasks = [{
-        id: 1,
-        name: "Juan Roman Riquelme",
-        direction: "Argentina",
-        contact: "46512641",
-        email: "riquelme@example.com",
-        puesto: "Cajero",
-        horario: "Lunes a viernes de 6am a 5pm"
-    },
-    {
-        id: 2,
-        name: "Luis Villa",
-        direction: "Guatemala",
-        contact: "784621",
-        email: "lvilla@example.com",
-        puesto: "Cocinero",
-        horario: "Sabado y domingo de 5am a 3pm"
-    },
-    {
-        id: 3,
-        name: "Gloria Valverde ",
-        direction: "Costa Rica",
-        contact: "7513547",
-        email: "gvalverde@example.com",
-        puesto: "Cocinero",
-        horario: "Lunes a viernes de 6am a 5pm"
-    }];
-
-    function loadTasks() {
-        const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
-        tasks.forEach(function (task) {
-            const taskCard = document.createElement('div');
-            taskCard.className = 'col-md-4 mb-3';
-            taskCard.innerHTML = `
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${task.name}</h5>
-                        <p class="card-text">Direccion: ${task.direction}</p>
-                        <p class="card-text">Email: ${task.email}</p>
-                        <p class="card-text">Contacto: ${task.contact}</p>
-                        <p class="card-text">Puesto: ${task.puesto}</p>
-                         <p class="card-text">Horario: ${task.horario}</p>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between">
-                        <button class="btn btn-secondary btn-sm edit-task" data-id="${task.id}">Edit</button>
-                        <button class="btn btn-danger btn-sm delete-task" data-id="${task.id}">Delete</button>
-                    </div>
-                </div>
-            `;
-            taskList.appendChild(taskCard);
-        });
+    let empleados = [];
+    const API_URL = 'backend/AdmEmpleados.php';
     
-        // Asigna eventos a los botones después de cargar las tareas
-        document.querySelectorAll('.edit-task').forEach(function (button) {
-            button.addEventListener('click', handleEditTask);
-        });
     
-        document.querySelectorAll('.delete-task').forEach(function (button) {
-            button.addEventListener('click', handleDeleteTask);
-        });
-    }
-    
-
-    document.querySelectorAll('.delete-task').forEach(function (button) {
-        button.addEventListener('click', handleDeleteTask);
-    });
-
-    // Función para editar tarea
-    function handleEditTask(event) {
+    async function CargarEmpleados() {
+        //va al servidor por los empleados
         try {
-            // alert(event.target.dataset.id);
-            //localizar la tarea quieren editar
-            const taskId = parseInt(event.target.dataset.id);
-            const task = tasks.find(t => t.id === taskId);
-            //cargar los datos en el formulario 
-            document.getElementById('task-name').value = task.name;
-            document.getElementById('task-direc').value = task.direction;
-            document.getElementById('task-contact').value = task.contact;
-            document.getElementById('task-email').value = task.email;
-            document.getElementById('task-job').value = task.puesto;
-            document.getElementById('task-hour').value = task.horario;
+            const response = await fetch(API_URL, {
+                method: 'GET',
+                credentials: 'include'
+            });
+            if (response.ok) {
+                empleados = await response.json();
+                renderEmpleados(empleados);
+            } else {
+                /*if (response.status == 401) {
+                    window.location.href = 'AdmEmpleados.html';//REVISAR EL HTML EN CASO DE FALLO
+                }
+                console.error("Error al obtener empleados");*/
 
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error("Error al obtener empleados: ", errorData.error || "Error desconocido");
+                    return;
+                }
+                
+            }
+            
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    function renderEmpleados(empleados) {
+        //traer los empleados desde el backend
+        
+        const EmployeeList = document.getElementById('task-list');
+        EmployeeList.innerHTML = '';
+        empleados.forEach(function (empleado) {
+
+            const employeeCard = document.createElement('div');
+            employeeCard.className = 'col-md-4 mb-3';
+            employeeCard.innerHTML = `
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${empleado.nombreEmpleado}</h5>
+                    <p class="card-text">${empleado.direccion}</p>
+                    <p class="card-text"><small class="text-muted">Contacto: ${empleado.contacto}</small> </p>
+                    <p class="card-text"><small class="text-muted">Email: ${empleado.email}</small> </p>
+                    <p class="card-text"><small class="text-muted">Puesto: ${empleado.puesto}</small> </p>
+                    <p class="card-text"><small class="text-muted">Horario: ${empleado.horario}</small> </p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <button class="btn btn-secondary btn-sm edit-task"data-id="${empleado.idEmpleado}">Edit</button>
+                    <button class="btn btn-danger btn-sm delete-task" data-id="${empleado.idEmpleado}">Delete</button>
+                </div>
+            </div>
+            `;
+            EmployeeList.appendChild(employeeCard);
+        });
+
+
+        document.querySelectorAll('.edit-task').forEach(function (button) {
+            button.addEventListener('click', handleEditEmployee);
+        });
+
+        document.querySelectorAll('.delete-task').forEach(function (button) {
+            button.addEventListener('click', handleDeleteEmployee);
+        });
+
+    }
+
+    function handleEditEmployee(event) {
+        try {
+            //localizar la tarea quieren editar
+            const empleadoId = parseInt(event.target.dataset.idEmpleado);
+            const empleado = empleados.find(t => t.idEmpleado === empleadoId);
+            //cargar los datos en el formulario 
+            document.getElementById('task-name').value = empleado.nombreEmpleado;
+            document.getElementById('task-direc').value = empleado.direccion;
+            document.getElementById('task-contact').value = empleado.contacto;
+            document.getElementById('task-email').value = empleado.email;
+            document.getElementById('task-job').value = empleado.puesto;
+            document.getElementById('task-hour').value = empleado.horario;
 
             //ponerlo en modo edicion
             isEditMode = true;
-            edittingId = taskId;
+            edittingId = empleadoId;
             //mostrar el modal
             const modal = new bootstrap.Modal(document.getElementById("taskModal"));
             modal.show();
 
 
         } catch (error) {
-            alert("Error trying to edit a task");
+            alert("Error trying to edit a employee");
             console.error(error);
         }
     }
 
-    // Función para eliminar tarea
-    function handleDeleteTask(event) {
-        const id = parseInt(event.target.dataset.id);
-        const index = tasks.findIndex(t => t.id === id);
-        tasks.splice(index, 1);
-        loadTasks();
-    }
 
-    // Evento para agregar una nueva tarea
-    document.getElementById('task-form').addEventListener('submit', function (e) {
+    async function handleDeleteEmployee(event) {
+        const idEmpleado = parseInt(event.target.dataset.id);
+        const response = await fetch(`${API_URL}?idEmpleado=${idEmpleado}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        });
+        if (response.ok) {
+            CargarEmpleados();
+            
+        } else {
+            console.error("Error eliminando empleados");
+            console.log(`${API_URL}?idEmpleado=${idEmpleado}`);
+        }
+    }
+    
+
+    document.getElementById('task-form').addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        const name = document.getElementById("task-name").value;
-        const direction = document.getElementById("task-direc").value;
-        const contact = document.getElementById("task-contact").value;
+        const nombreEmpleado = document.getElementById("task-name").value;
+        const direccion = document.getElementById("task-direc").value;
+        const contacto = document.getElementById("task-contact").value;
         const email = document.getElementById("task-email").value;
         const puesto = document.getElementById("task-job").value;
         const horario = document.getElementById("task-hour").value;
 
         if (isEditMode) {
-            //todo editar
-            const task = tasks.find(t => t.id === edittingId);
-            task.name = name;
-            task.direction = direction;
-            task.contact = contact;
-            task.email = email;
-            task.puesto = puesto;
-            task.horario = horario;
+            //editar
+            const response = await fetch(`${API_URL}?idEmpleado=${edittingId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nombreEmpleado: nombreEmpleado, direccion: direccion, contacto: contacto,email: email,puesto: puesto,horario: horario }),
+                credentials: "include"
+            });
+            if (!response.ok) {
+                console.error("Sucedio un error");
+            }
 
         } else {
-            const newTask = {
-                id: tasks.length + 1,
-                name: name,
-                direction: direction,
-                contact: contact,
+            const newEmployee = {
+                nombreEmpleado: nombreEmpleado,
+                direccion: direccion,
+                contacto: contacto,
                 email: email,
                 puesto: puesto,
-                horario: horario,
+                horario: horario
             };
-            tasks.push(newTask);
+            //enviar el empleado al backend
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newEmployee),
+                credentials: "include"
+            });
+            if (!response.ok) {
+                console.error("Sucedio un error");
+            }
         }
         const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
         modal.hide();
-        loadTasks();
+        CargarEmpleados();
     });
 
-    document.getElementById('taskModal').addEventListener('show.bs.modal',function(){
-        if(!isEditMode){
+    document.getElementById('taskModal').addEventListener('show.bs.modal', function () {
+        if (!isEditMode) {
             document.getElementById('task-form').reset();
             // document.getElementById('task-title').value = "";
             // document.getElementById('task-desc').value = "";
@@ -154,10 +178,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.getElementById("taskModal").addEventListener('hidden.bs.modal', function(){
+    document.getElementById("taskModal").addEventListener('hidden.bs.modal', function () {
         edittingId = null;
         isEditMode = false;
     })
-    loadTasks();
+    CargarEmpleados();
 
 });

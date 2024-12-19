@@ -5,39 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles/cruds.css">
 </head>
 <body>
-    <navbar class="navbar navbar-expand-lg bg-body-tertiary">
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="dashboard.html">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false">Administracion</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="AdmProductos.html">Administrar Productos</a></li>
-                    <li><a class="dropdown-item" href="AdmProveedores.html">Administrar Proveedores</a></li>
-                    <li><a class="dropdown-item" href="AdmEmpleados.html">Administrar Empleados</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Reportes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Existencias</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Clientes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pedidos</a>
-            </li>
-        </ul>
-    </navbar>
+   <!-- Menú de navegación -->
+   <nav class="navbar-crud">
+    <ul class="nav-list-crud">
+      <li><a href="inicio_admin.html">Inicio</a></li>
+      <li><a href="AdmEmpleados.html">Administracion de empleados</a></li>
+      <li><a href="AdmProductos.html">Administracion de productos</a></li>
+      <li><a href="AdmProveedores.html">Administracion de proveedores</a></li>
+      <li><a class="nav-link" href="backend/logout.php">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado principal con imagen de fondo -->
+  <header class="main-header-crud">
+    <div class="overlay-crud"></div>
+    <div class="header-content-crud">
+      <h1>Cafeteria Web</h1>
+      <p>Comida Local & Comida Honesta</p>
+    </div>
+  </header>
+
+
+  <!-- Secciones de contenido -->
+
     <div class="container my-4">
-        <h1 class="text-center mb-4" >Empleados</h1>
         <div class="d-flex justify-content-center mb-4" >
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">Agregar un nuevo empleado</button>
         </div>
@@ -86,7 +80,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button type="submit" class="btn btn-primary">Save Task</button>
+                            <button type="submit" class="btn btn-primary">Save Employee</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </div>
                     </form>
