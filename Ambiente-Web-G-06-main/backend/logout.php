@@ -6,4 +6,4 @@ session_destroy();
 
 logDebug("Usuario cerro sesion");
 //revisar 
-header('Location: /Ambiente-Web-G-06-main/login.html ');
+header('Location: /Ambiente-Web-G-06/Ambiente-Web-G-06-main/login.html ');

@@ -2,9 +2,9 @@
 require "message_log.php";
 
 $host = getenv('DB_HOST') !== false ? getenv('DB_HOST') : 'localhost';
-$dbname = getenv('DB_NAME') !== false ? getenv('DB_NAME') : 'db_proyecto';
-$user = getenv('DB_USER') !== false ? getenv('DB_USER') : 'root';
-$password = getenv('DB_PASSWORD') !== false ? getenv('DB_PASSWORD') : '12345';
+$dbname = getenv('DB_NAME') !== false ? getenv('DB_NAME') : 'proyecto';
+$user = getenv('DB_USER') !== false ? getenv('DB_USER') : 'dbuser';
+$password = getenv('DB_PASSWORD') !== false ? getenv('DB_PASSWORD') : '123456789';
 
 try{
 
